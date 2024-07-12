@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cyber-heaven-api
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: password
+    ports:
+      - "5506:3306"
+    expose:
+      - 5506
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    expose:
+      - 5672
+      - 15672
+    volumes:
+      - ./docker/rabbitmq/data:/var/lib/rabbitmq
